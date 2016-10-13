@@ -19,8 +19,9 @@ public class VentanaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaPrincipal() {
+		setTitle("VDP v2.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 585, 252);
+		setBounds(100, 100, 590, 257);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -69,5 +70,10 @@ public class VentanaPrincipal extends JFrame {
 		Canvas canvas = new Canvas();
 		canvas.setBounds(10, 10, 416, 143);
 		contentPane.add(canvas);
+		
+		JButton Salir = new JButton("Salir");
+		System.exit(0);
+		Salir.setBounds(436, 93, 132, 55);
+		contentPane.add(Salir);
 	}
 }
