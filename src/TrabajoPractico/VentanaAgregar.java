@@ -10,6 +10,9 @@ import javax.swing.JLabel;
 import java.awt.Component;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JMenu;
@@ -69,6 +72,11 @@ public class VentanaAgregar extends JFrame {
 		
 		JButton BotonSalir = new JButton("Salir");
 		BotonSalir.setBounds(119, 239, 96, 51);
+		BotonSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		contentPane.add(BotonSalir);
 		
 		Var_Nombre = new JTextField();
