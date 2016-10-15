@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Canvas;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -15,11 +14,12 @@ import java.awt.Font;
 
 public class VentanaPrincipal extends JFrame {
 
-
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	Canvas canvas;
 	boolean VentanaActiva = false; 
+	Musica Fondo = new Musica("Pearl Jam - Even Flow");
+	
+	
 
 	public VentanaPrincipal() {
 		setForeground(Color.BLUE);
@@ -32,7 +32,7 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+	
 		JButton BotonAgregarOferta = new JButton("Agregar Oferta");
 		BotonAgregarOferta.setForeground(SystemColor.activeCaptionText);
 		BotonAgregarOferta.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -43,10 +43,7 @@ public class VentanaPrincipal extends JFrame {
 					VentanaActiva=true;
 					VentanaAgregar VentanaOferta = new VentanaAgregar();
 					VentanaOferta.setVisible(true);
-					
 				}
-				
-				
 			}
 		});
 		BotonAgregarOferta.setBounds(10, 159, 132, 55);

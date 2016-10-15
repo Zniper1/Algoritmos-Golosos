@@ -14,4 +14,24 @@ public class Oferta {
 		this.HorarioFinal = HorarioFin;
 		this.Oferta = Dinero;
 	}
+	
+	public String GetNombre()
+	{
+		return Nombre;
+	}
+	
+	public int GetHorarioInicial()
+	{
+		return HorarioInicial;
+	}
+	
+	public int GetHorarioFinall()
+	{
+		return HorarioFinal;
+	}
+	
+	public int GetOferta()
+	{
+		return Oferta;
+	}
 }

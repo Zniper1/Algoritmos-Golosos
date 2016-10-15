@@ -25,12 +25,15 @@ public class VentanaAgregar extends JFrame {
 	private JPanel contentPane;
 	private JTextField Var_Nombre;
 	private JTextField Var_Importe;
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public VentanaAgregar() {
 		setTitle("Ventana Agregar");
+		setVisible(true);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 241, 339);
 		contentPane = new JPanel();
@@ -68,13 +71,18 @@ public class VentanaAgregar extends JFrame {
 		
 		JButton BotonAgregar = new JButton("Guardar");
 		BotonAgregar.setBounds(10, 239, 96, 51);
+		BotonAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Guardar");
+			}
+		});
 		contentPane.add(BotonAgregar);
 		
 		JButton BotonSalir = new JButton("Salir");
 		BotonSalir.setBounds(119, 239, 96, 51);
 		BotonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				setVisible(false);
 			}
 		});
 		contentPane.add(BotonSalir);
