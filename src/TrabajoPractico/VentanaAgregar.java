@@ -19,18 +19,24 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JCheckBoxMenuItem;
 import java.awt.Choice;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class VentanaAgregar extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField Var_Nombre;
 	private JTextField Var_Importe;
-	
+	private JTextField Var_HorarioInic;
+	private JTextField Var_HorarioFin;
 
 	/**
 	 * Create the frame.
+	 * @param ofertas 
 	 */
-	public VentanaAgregar() {
+	public VentanaAgregar(ListaDeOfertas ofertas) {
 		setTitle("Ventana Agregar");
 		setVisible(true);
 		setResizable(false);
@@ -43,6 +49,7 @@ public class VentanaAgregar extends JFrame {
 		
 		JLabel Nombre = new JLabel("Nombre");
 		Nombre.setBounds(10, 38, 103, 22);
+		Nombre.setForeground(Color.WHITE);
 		Nombre.setFont(new Font("Tahoma", Font.BOLD, 14));
 		Nombre.setHorizontalAlignment(SwingConstants.CENTER);
 		Nombre.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -50,6 +57,7 @@ public class VentanaAgregar extends JFrame {
 		
 		JLabel HorarioInicio = new JLabel("Horario Inicio");
 		HorarioInicio.setBounds(10, 86, 103, 22);
+		HorarioInicio.setForeground(Color.WHITE);
 		HorarioInicio.setHorizontalAlignment(SwingConstants.CENTER);
 		HorarioInicio.setFont(new Font("Tahoma", Font.BOLD, 14));
 		HorarioInicio.setAlignmentX(0.5f);
@@ -57,6 +65,7 @@ public class VentanaAgregar extends JFrame {
 		
 		JLabel HorarioFinal = new JLabel("Horario Final");
 		HorarioFinal.setBounds(10, 133, 103, 22);
+		HorarioFinal.setForeground(Color.WHITE);
 		HorarioFinal.setHorizontalAlignment(SwingConstants.CENTER);
 		HorarioFinal.setFont(new Font("Tahoma", Font.BOLD, 14));
 		HorarioFinal.setAlignmentX(0.5f);
@@ -64,22 +73,27 @@ public class VentanaAgregar extends JFrame {
 		
 		JLabel Importe = new JLabel("Importe");
 		Importe.setBounds(10, 182, 103, 22);
+		Importe.setForeground(Color.WHITE);
 		Importe.setHorizontalAlignment(SwingConstants.CENTER);
 		Importe.setFont(new Font("Tahoma", Font.BOLD, 14));
 		Importe.setAlignmentX(0.5f);
 		contentPane.add(Importe);
 		
 		JButton BotonAgregar = new JButton("Guardar");
-		BotonAgregar.setBounds(10, 239, 96, 51);
+		BotonAgregar.setBounds(10, 252, 96, 51);
 		BotonAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Guardar");
+				if(ofertas.Validaciones(Var_Nombre.getText(),Var_HorarioInic.getText(),Var_HorarioFin.getText(),Var_Importe.getText())){
+					Oferta NuevaOferta = new Oferta(Var_Nombre.getText(),Var_HorarioInic.getText(),Var_HorarioFin.getText(),Var_Importe.getText());
+					ofertas.Licitacion.add(NuevaOferta);
+					dispose();
+				}
 			}
 		});
 		contentPane.add(BotonAgregar);
 		
 		JButton BotonSalir = new JButton("Salir");
-		BotonSalir.setBounds(119, 239, 96, 51);
+		BotonSalir.setBounds(129, 252, 96, 51);
 		BotonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -89,48 +103,72 @@ public class VentanaAgregar extends JFrame {
 		
 		Var_Nombre = new JTextField();
 		Var_Nombre.setBounds(104, 34, 111, 34);
+		Var_Nombre.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent c) {
+				char a=c.getKeyChar();
+				if (Character.isDigit(a))
+				{
+					getToolkit().beep();
+					c.consume();
+				}
+			}
+		});
 		contentPane.add(Var_Nombre);
 		Var_Nombre.setColumns(10);
 		
 		Var_Importe = new JTextField();
+		Var_Importe.setBounds(104, 178, 111, 34);
+		Var_Importe.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent c) {
+				char a=c.getKeyChar();
+				if (Character.isLetter(a))
+				{
+					getToolkit().beep();
+					c.consume();
+				}
+			}
+		});
 		Var_Importe.setColumns(10);
-		Var_Importe.setBounds(104, 170, 111, 34);
 		contentPane.add(Var_Importe);
 		
-		Choice Var_HorarioInic = new Choice();
-		Var_HorarioInic.setBounds(119, 86, 96, 20);
-		Var_HorarioInic.addItem("8:00");
-		Var_HorarioInic.addItem("9:00");
-		Var_HorarioInic.addItem("10:00");
-		Var_HorarioInic.addItem("11:00");
-		Var_HorarioInic.addItem("12:00");
-		Var_HorarioInic.addItem("13:00");
-		Var_HorarioInic.addItem("14:00");
-		Var_HorarioInic.addItem("15:00");
-		Var_HorarioInic.addItem("16:00");
-		Var_HorarioInic.addItem("17:00");
-		Var_HorarioInic.addItem("18:00");
-		Var_HorarioInic.addItem("19:00");
-		Var_HorarioInic.addItem("20:00");
-		Var_HorarioInic.addItem("21:00");
+		Var_HorarioInic = new JTextField();
+		Var_HorarioInic.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent c) {
+				char a=c.getKeyChar();
+				if (Character.isLetter(a))
+				{
+					getToolkit().beep();
+					c.consume();
+				}
+			}
+		});
+		Var_HorarioInic.setBounds(142, 82, 73, 34);
+		Var_HorarioInic.setColumns(10);
 		contentPane.add(Var_HorarioInic);
 		
-		Choice Var_HorarioFin = new Choice();
-		Var_HorarioFin.setBounds(119, 135, 96, 20);
-		Var_HorarioFin.addItem("9:00");
-		Var_HorarioFin.addItem("10:00");
-		Var_HorarioFin.addItem("11:00");
-		Var_HorarioFin.addItem("12:00");
-		Var_HorarioFin.addItem("13:00");
-		Var_HorarioFin.addItem("14:00");
-		Var_HorarioFin.addItem("15:00");
-		Var_HorarioFin.addItem("16:00");
-		Var_HorarioFin.addItem("17:00");
-		Var_HorarioFin.addItem("18:00");
-		Var_HorarioFin.addItem("19:00");
-		Var_HorarioFin.addItem("20:00");
-		Var_HorarioFin.addItem("21:00");
-		Var_HorarioFin.addItem("22:00");
+		Var_HorarioFin = new JTextField();
+		Var_HorarioFin.setColumns(10);
+		Var_HorarioFin.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent c) {
+				char a=c.getKeyChar();
+				if (Character.isLetter(a))
+				{
+					getToolkit().beep();
+					c.consume();
+				}
+			}
+		});
+		Var_HorarioFin.setBounds(142, 127, 73, 34);
 		contentPane.add(Var_HorarioFin);
+		
+		JLabel Fondo = new JLabel("");
+		Fondo.setBounds(0, 0, 235, 314);
+		Fondo.setIcon(new ImageIcon(VentanaAgregar.class.getResource("/Imagenes/Fondo Agregar.png")));
+		contentPane.add(Fondo);
+		
 	}
 }

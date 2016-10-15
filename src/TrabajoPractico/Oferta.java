@@ -7,12 +7,12 @@ public class Oferta {
 	int HorarioFinal;
 	int Oferta;
 
-	Oferta(String name, int HorarioInic, int HorarioFin, int Dinero)
+	Oferta(String name, String HorarioInic, String HorarioFin, String Dinero)
 	{
 		this.Nombre = name;
-		this.HorarioInicial = HorarioInic;
-		this.HorarioFinal = HorarioFin;
-		this.Oferta = Dinero;
+		this.HorarioInicial = Integer.parseInt(HorarioInic);
+		this.HorarioFinal = Integer.parseInt(HorarioFin);
+		this.Oferta = Integer.parseInt(Dinero);
 	}
 	
 	public String GetNombre()

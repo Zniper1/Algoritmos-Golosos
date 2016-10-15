@@ -17,9 +17,9 @@ public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	boolean VentanaActiva = false; 
-	Musica Fondo = new Musica("Pearl Jam - Even Flow");
-	
-	
+	//Musica Fondo = new Musica("Pearl Jam - Even Flow");
+	//Musica Fondo = new Musica("Man of the Hour");
+	ListaDeOfertas Ofertas = new ListaDeOfertas();
 
 	public VentanaPrincipal() {
 		setForeground(Color.BLUE);
@@ -39,11 +39,9 @@ public class VentanaPrincipal extends JFrame {
 		BotonAgregarOferta.setBackground(SystemColor.activeCaption);
 		BotonAgregarOferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(VentanaActiva==false){
-					VentanaActiva=true;
-					VentanaAgregar VentanaOferta = new VentanaAgregar();
+					VentanaAgregar VentanaOferta = new VentanaAgregar(Ofertas);
 					VentanaOferta.setVisible(true);
-				}
+					
 			}
 		});
 		BotonAgregarOferta.setBounds(10, 159, 132, 55);
@@ -66,6 +64,7 @@ public class VentanaPrincipal extends JFrame {
 		MostrarOfertas.setBackground(SystemColor.activeCaption);
 		MostrarOfertas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(Ofertas.Tamanio());
 			}
 		});
 		MostrarOfertas.setBounds(294, 159, 132, 55);
