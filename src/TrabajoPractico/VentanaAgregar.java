@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import java.awt.Component;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -80,6 +81,9 @@ public class VentanaAgregar extends JFrame {
 		contentPane.add(Importe);
 		
 		JButton BotonAgregar = new JButton("Guardar");
+		BotonAgregar.setForeground(SystemColor.activeCaptionText);
+		BotonAgregar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		BotonAgregar.setBackground(SystemColor.activeCaption);
 		BotonAgregar.setBounds(10, 252, 96, 51);
 		BotonAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -88,11 +92,19 @@ public class VentanaAgregar extends JFrame {
 					ofertas.Licitacion.add(NuevaOferta);
 					dispose();
 				}
+				else
+				{
+					MensajeErrorAgregar VentanaError = new MensajeErrorAgregar(ofertas.TipoDeError(Var_Nombre.getText(),Var_HorarioInic.getText(),Var_HorarioFin.getText(),Var_Importe.getText()));
+					VentanaError.setVisible(true);
+				}
 			}
 		});
 		contentPane.add(BotonAgregar);
 		
 		JButton BotonSalir = new JButton("Salir");
+		BotonSalir.setForeground(SystemColor.activeCaptionText);
+		BotonSalir.setFont(new Font("Tahoma", Font.BOLD, 12));
+		BotonSalir.setBackground(SystemColor.activeCaption);
 		BotonSalir.setBounds(129, 252, 96, 51);
 		BotonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
