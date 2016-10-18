@@ -6,6 +6,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -17,11 +24,13 @@ public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	boolean VentanaActiva = false;
-	Musica Fondo = new Musica("Pearl Jam - Even Flow");
-	//Musica Fondo = new Musica("Man of the Hour");
+	// Musica Fondo = new Musica("Pearl Jam - Even Flow");
+	// Musica Fondo = new Musica("Man of the Hour");
 	ListaDeOfertas Ofertas = new ListaDeOfertas();
+	
 
 	public VentanaPrincipal() {
+		Ofertas.Licitacion = Cargar();
 		setForeground(Color.BLUE);
 		setResizable(false);
 		setTitle("Eddie Vedder - Sala de Ensayo");
@@ -87,6 +96,7 @@ public class VentanaPrincipal extends JFrame {
 		GuardarProgreso.setBackground(SystemColor.activeCaption);
 		GuardarProgreso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Guardar(Ofertas.Licitacion);
 			}
 		});
 		GuardarProgreso.setBounds(436, 11, 132, 38);
@@ -114,4 +124,38 @@ public class VentanaPrincipal extends JFrame {
 		Fondo.setBounds(0, 0, 584, 232);
 		contentPane.add(Fondo);
 	}
+
+	public static void Guardar(ArrayList<Oferta> lista) {
+		Path path = Paths.get("C:/DatosClientes.txt");
+		Charset utf8 = StandardCharsets.UTF_8;
+		try (BufferedWriter w = Files.newBufferedWriter(path, utf8)) {
+			for (int i = 0; i < lista.size(); i++) {
+				w.write(lista.get(i).GetNombre() + ";" + lista.get(i).GetHorarioInicial() + ";"
+						+ lista.get(i).GetHorarioInicial() + ";" + lista.get(i).GetOferta() + "\n");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static ArrayList<Oferta> Cargar() {
+		Path path = Paths.get("C:/DatosClientes.txt");
+		Charset utf8 = StandardCharsets.UTF_8;
+		String tmp;
+		ArrayList<Oferta> Lista = new ArrayList<Oferta>();
+		try (BufferedReader r = Files.newBufferedReader(path, utf8)) {
+			while ((tmp = r.readLine()) != null) {
+				String[] tmpSplit = tmp.split(";");
+				Oferta NuevaOferta = new Oferta(tmpSplit[0], tmpSplit[1], tmpSplit[2], tmpSplit[3]);
+				Lista.add(NuevaOferta);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return Lista;
+	}
+
 }
