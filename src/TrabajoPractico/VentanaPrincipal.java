@@ -61,6 +61,8 @@ public class VentanaPrincipal extends JFrame {
 		BotonEliminarOferta.setBackground(SystemColor.activeCaption);
 		BotonEliminarOferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				VentanaEliminar Eliminar = new VentanaEliminar(Ofertas);
+				Eliminar.setVisible(true);
 			}
 		});
 		BotonEliminarOferta.setBounds(152, 159, 132, 55);

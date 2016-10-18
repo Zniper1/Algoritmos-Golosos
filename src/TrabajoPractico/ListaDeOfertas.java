@@ -111,4 +111,9 @@ public class ListaDeOfertas {
 		return "Error desconocido";
 	}
 	
+	public void EliminarTodo ()
+	{
+		Licitacion.clear();
+	}
+	
 }
