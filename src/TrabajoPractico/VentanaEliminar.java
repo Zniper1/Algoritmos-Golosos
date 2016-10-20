@@ -99,7 +99,7 @@ public class VentanaEliminar extends JFrame {
 		btnEliminarOferta.setBackground(SystemColor.activeCaption);
 		btnEliminarOferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (txtOferta.getText() == "") {
+				if (txtOferta.getText() != "") {
 					int x = Integer.parseInt(txtOferta.getText()) - 1;
 					if (x >= 0 && x < ofertas.Licitacion.size()) {
 						ofertas.BorrarOferta(x);

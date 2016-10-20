@@ -24,8 +24,8 @@ public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	boolean VentanaActiva = false;
-	// Musica Fondo = new Musica("Pearl Jam - Even Flow");
-	// Musica Fondo = new Musica("Man of the Hour");
+	Musica Fondo = new Musica("Pearl Jam - Even Flow");
+ 
 	ListaDeOfertas Ofertas = new ListaDeOfertas();
 	
 
@@ -128,7 +128,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public static void Guardar(ArrayList<Oferta> lista) {
-		Path path = Paths.get("C:/DatosClientes.txt");
+		Path path = Paths.get("DatosClientes.txt");
 		Charset utf8 = StandardCharsets.UTF_8;
 		try (BufferedWriter w = Files.newBufferedWriter(path, utf8)) {
 			for (int i = 0; i < lista.size(); i++) {
@@ -142,7 +142,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public static ArrayList<Oferta> Cargar() {
-		Path path = Paths.get("C:/DatosClientes.txt");
+		Path path = Paths.get("DatosClientes.txt");
 		Charset utf8 = StandardCharsets.UTF_8;
 		String tmp;
 		ArrayList<Oferta> Lista = new ArrayList<Oferta>();

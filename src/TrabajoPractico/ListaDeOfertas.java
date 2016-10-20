@@ -1,6 +1,8 @@
 package TrabajoPractico;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ListaDeOfertas {
 	
@@ -116,4 +118,24 @@ public class ListaDeOfertas {
 		Licitacion.clear();
 	}
 	
+	public void OrdenarArray()
+	{
+		Comparator<Oferta> comparator = new Comparator<Oferta>() {
+			@Override
+			public int compare(Oferta Uno, Oferta Otro) {
+					if (Uno.Oferta > Otro.Oferta)
+					{
+						return 1;
+					}
+					if (Uno.Oferta < Otro.Oferta)
+					{
+						return -1;
+					}
+					
+				return 0;
+			}
+		};
+
+		Collections.sort(Licitacion, comparator); // use the comparator as much as u want
+	}
 }
