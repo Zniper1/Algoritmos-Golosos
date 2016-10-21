@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,8 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
 import java.awt.Color;
+
 import javax.swing.JTextField;
+
 import java.awt.Window.Type;
 
 public class VentanaEliminar extends JFrame {
@@ -31,6 +36,7 @@ public class VentanaEliminar extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 590, 367);
 		contentPane = new JPanel();
+		setResizable(false);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
@@ -39,7 +45,7 @@ public class VentanaEliminar extends JFrame {
 		for (int i = 0; i < ofertas.Licitacion.size(); i++) {
 			Matriz[i][0] = ofertas.Licitacion.get(i).GetNombre();
 			Matriz[i][1] = String.valueOf(ofertas.Licitacion.get(i).GetHorarioInicial()) + " Hs.";
-			Matriz[i][2] = String.valueOf(ofertas.Licitacion.get(i).GetHorarioFinall()) + " Hs.";
+			Matriz[i][2] = String.valueOf(ofertas.Licitacion.get(i).GetHorarioFinal()) + " Hs.";
 			Matriz[i][3] = "$ " + String.valueOf(ofertas.Licitacion.get(i).GetOferta());
 		}
 
@@ -90,6 +96,17 @@ public class VentanaEliminar extends JFrame {
 
 		txtOferta = new JTextField();
 		txtOferta.setBounds(10, 56, 78, 23);
+		txtOferta.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent c) {
+				char a=c.getKeyChar();
+				if (Character.isLetter(a))
+				{
+					getToolkit().beep();
+					c.consume();
+				}
+			}
+		});
 		contentPane.add(txtOferta);
 		txtOferta.setColumns(10);
 

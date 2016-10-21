@@ -25,7 +25,7 @@ public class Oferta {
 		return HorarioInicial;
 	}
 	
-	public int GetHorarioFinall()
+	public int GetHorarioFinal()
 	{
 		return HorarioFinal;
 	}

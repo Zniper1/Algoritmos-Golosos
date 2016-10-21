@@ -37,9 +37,7 @@ public class ListaDeOfertas {
 		}
 		int Inicio = Integer.parseInt(HorarioInicio);
 		int Fin = Integer.parseInt(HorarioFin);
-		
-		System.out.println("Inicio: " + Inicio);
-		System.out.println("Fin: " + Fin);
+
 		if(Inicio<8 || Inicio>22)
 		{
 			return false;
@@ -65,7 +63,6 @@ public class ListaDeOfertas {
 			return false;
 		}
 		
-		
 		return true;
 	}
 	
@@ -86,8 +83,6 @@ public class ListaDeOfertas {
 		int Inicio = Integer.parseInt(HorarioInicio);
 		int Fin = Integer.parseInt(HorarioFin);
 		
-		System.out.println("Inicio: " + Inicio);
-		System.out.println("Fin: " + Fin);
 		if(Inicio<8 || Inicio>21)
 		{
 			return "Horario Inicial es de 8 a 21Hs.";
@@ -108,7 +103,7 @@ public class ListaDeOfertas {
 		{
 			return "Horario de Fin no puede ser menor o igual que Horario de Inicio";
 		}
-		
+
 		
 		return "Error desconocido";
 	}
@@ -135,7 +130,9 @@ public class ListaDeOfertas {
 				return 0;
 			}
 		};
-
-		Collections.sort(Licitacion, comparator); // use the comparator as much as u want
+		Collections.sort(Licitacion, comparator);
+		Collections.reverse(Licitacion);
 	}
+
+
 }

@@ -24,10 +24,9 @@ public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	boolean VentanaActiva = false;
-	Musica Fondo = new Musica("Pearl Jam - Even Flow");
- 
+	// Musica Fondo = new Musica("Pearl Jam - Even Flow");
+
 	ListaDeOfertas Ofertas = new ListaDeOfertas();
-	
 
 	public VentanaPrincipal() {
 		Ofertas.Licitacion = Cargar();
@@ -87,6 +86,9 @@ public class VentanaPrincipal extends JFrame {
 		CalcularGanancia.setBackground(SystemColor.activeCaption);
 		CalcularGanancia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Ofertas.OrdenarArray();
+				VentanaCalculo Ganancia = new VentanaCalculo(Ofertas);
+				Ganancia.setVisible(true);
 			}
 		});
 		CalcularGanancia.setBounds(436, 159, 132, 55);
