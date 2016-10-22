@@ -135,7 +135,7 @@ public class VentanaPrincipal extends JFrame {
 		try (BufferedWriter w = Files.newBufferedWriter(path, utf8)) {
 			for (int i = 0; i < lista.size(); i++) {
 				w.write(lista.get(i).GetNombre() + ";" + lista.get(i).GetHorarioInicial() + ";"
-						+ lista.get(i).GetHorarioInicial() + ";" + lista.get(i).GetOferta() + "\n");
+						+ lista.get(i).GetHorarioFinal() + ";" + lista.get(i).GetOferta() + "\n");
 			}
 
 		} catch (Exception e) {

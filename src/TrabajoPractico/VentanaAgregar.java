@@ -88,8 +88,7 @@ public class VentanaAgregar extends JFrame {
 		BotonAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(ofertas.Validaciones(Var_Nombre.getText(),Var_HorarioInic.getText(),Var_HorarioFin.getText(),Var_Importe.getText())){
-					Oferta NuevaOferta = new Oferta(Var_Nombre.getText(),Var_HorarioInic.getText(),Var_HorarioFin.getText(),Var_Importe.getText());
-					ofertas.Licitacion.add(NuevaOferta);
+					ofertas.AgregarOferta(Var_Nombre.getText(),Var_HorarioInic.getText(),Var_HorarioFin.getText(),Var_Importe.getText());
 					dispose();
 				}
 				else

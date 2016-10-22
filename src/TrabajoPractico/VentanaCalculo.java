@@ -49,8 +49,8 @@ public class VentanaCalculo extends JFrame {
 		for (int i = 0; i < OfertasCalculo.size(); i++) {
 			SumaTotal += OfertasCalculo.get(i).Oferta;
 			Matriz[i][0] = OfertasCalculo.get(i).Nombre;
-			Matriz[i][1] = String.valueOf(OfertasCalculo.get(i).HorarioInicial);
-			Matriz[i][2] = String.valueOf(OfertasCalculo.get(i).HorarioFinal);
+			Matriz[i][1] = String.valueOf(OfertasCalculo.get(i).HorarioInicial) + " hs";
+			Matriz[i][2] = String.valueOf(OfertasCalculo.get(i).HorarioFinal) + " hs";
 			Matriz[i][3] = String.valueOf(OfertasCalculo.get(i).Oferta);
 
 		}
@@ -62,26 +62,20 @@ public class VentanaCalculo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		table = new JTable();
 		table.setFont(new Font("Tahoma", Font.BOLD, 13));
-		table.setModel(new DefaultTableModel(
-			Matriz,
-			new String[] {
-				"Nombre", "Horario Inicio", "Horario Fin", "Importe"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		table.setModel(
+				new DefaultTableModel(Matriz, new String[] { "Nombre", "Horario Inicio", "Horario Fin", "Importe" }) {
+					Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
+
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+				});
 		table.setBounds(10, 54, 477, 240);
 		contentPane.add(table);
-		
-		
+
 		JButton Volver = new JButton("Volver");
 		Volver.setForeground(SystemColor.activeCaptionText);
 		Volver.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -93,25 +87,39 @@ public class VentanaCalculo extends JFrame {
 		});
 		Volver.setBounds(355, 11, 132, 32);
 		contentPane.add(Volver);
-		
+
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setText("$ " + String.valueOf(SumaTotal));
 		textPane.setFont(new Font("Calibri", Font.BOLD, 23));
 		textPane.setBounds(365, 305, 122, 37);
 		contentPane.add(textPane);
-		
-		
 
 	}
 
 	public boolean SeTocan(Oferta NuevaOferta, ArrayList<Oferta> OfertasCalculo) {
 		for (int i = 0; i < OfertasCalculo.size(); i++) {
-			if (OfertasCalculo.get(i).HorarioInicial >= NuevaOferta.HorarioFinal
-					|| OfertasCalculo.get(i).HorarioInicial > NuevaOferta.HorarioInicial
-							&& OfertasCalculo.get(i).HorarioFinal <= NuevaOferta.HorarioInicial
-					|| OfertasCalculo.get(i).HorarioFinal < NuevaOferta.HorarioFinal) {
-				return false;
+			if(OfertasCalculo.get(i).HorarioInicial>NuevaOferta.HorarioInicial)
+			{
+				if (!(OfertasCalculo.get(i).HorarioInicial >= NuevaOferta.HorarioFinal)) 
+				{
+					return false;
+				}
+				if (!(OfertasCalculo.get(i).HorarioInicial > NuevaOferta.HorarioInicial)) 
+				{
+					return false;
+				}
+			}
+			else
+			{
+				if (!(OfertasCalculo.get(i).HorarioFinal < NuevaOferta.HorarioFinal)) 
+				{
+					return false;
+				}
+				if (!(OfertasCalculo.get(i).HorarioFinal <= NuevaOferta.HorarioInicial)) 
+				{
+					return false;
+				}
 			}
 		}
 
