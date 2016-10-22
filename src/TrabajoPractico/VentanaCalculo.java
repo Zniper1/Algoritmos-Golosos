@@ -26,6 +26,7 @@ import javax.swing.JTextPane;
 import javax.swing.DropMode;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
+import javax.swing.ImageIcon;
 
 public class VentanaCalculo extends JFrame {
 
@@ -94,6 +95,21 @@ public class VentanaCalculo extends JFrame {
 		textPane.setFont(new Font("Calibri", Font.BOLD, 23));
 		textPane.setBounds(365, 305, 122, 37);
 		contentPane.add(textPane);
+		
+		JLabel Ganancia = new JLabel("Ganancias");
+		Ganancia.setAlignmentX(Component.CENTER_ALIGNMENT);
+		Ganancia.setOpaque(true);
+		Ganancia.setFocusable(false);
+		Ganancia.setBackground(SystemColor.activeCaption);
+		Ganancia.setForeground(new Color(255, 255, 255));
+		Ganancia.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+		Ganancia.setBounds(259, 305, 102, 37);
+		contentPane.add(Ganancia);
+		
+		JLabel Fondo = new JLabel("");
+		Fondo.setIcon(new ImageIcon(VentanaCalculo.class.getResource("/Imagenes/Fondo Ganancia.png")));
+		Fondo.setBounds(-186, -51, 737, 421);
+		contentPane.add(Fondo);
 
 	}
 

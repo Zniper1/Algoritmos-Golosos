@@ -24,7 +24,7 @@ public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	boolean VentanaActiva = false;
-	// Musica Fondo = new Musica("Pearl Jam - Even Flow");
+	Musica Fondo = new Musica("Pearl Jam - Even Flow");
 
 	ListaDeOfertas Ofertas = new ListaDeOfertas();
 
