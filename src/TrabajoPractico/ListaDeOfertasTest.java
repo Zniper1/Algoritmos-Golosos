@@ -11,6 +11,7 @@ public class ListaDeOfertasTest {
 	@Test
 	public void AgregarTest() {
 		ListaDeOfertas Listatest = ListadeOferTest();
+		
 	}
 
 	@Test
